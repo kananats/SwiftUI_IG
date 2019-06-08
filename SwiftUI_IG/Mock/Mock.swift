@@ -16,7 +16,7 @@ struct Mock {
     let stories = [story_1, story_2, story_3, story_4]
 }
 
-private let user_1 = User(name: "kanaminori", image: UIImage(named: "photo_1")!)
+private let user_1 = User(name: "kananats", image: UIImage(named: "photo_1")!)
 
 private let content_1 = Content(text: "Lunch!!!", date: Date().addingTimeInterval(-3600), image: UIImage(named: "photo_2")!)
 
