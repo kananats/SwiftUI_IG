@@ -17,6 +17,7 @@ extension Post {
                 Header(post: post)
                     .padding(.leading, 16)
                 Content(post: post)
+                Footer(post: post)
             }.padding(.leading, -20)
         }
     }
@@ -33,7 +34,7 @@ extension Post.View {
                     .clipShape(Circle())
                     .frame(width: 60, height: 60)
                     .clipped()
-                    .overlay(Circle().inset(by: -2).stroke(AngularGradient(gradient: Gradient(colors: Color.instagram), center: UnitPoint(x: 0.5, y: 0.5)), lineWidth: 4))
+                    .overlay(Circle().inset(by: -2).stroke(AngularGradient(gradient: Gradient(colors: Color.instagram), center: .center), lineWidth: 4))
                     .overlay(Circle().inset(by: -1).stroke(Color.white, lineWidth: 2))
                 VStack(alignment: .leading, spacing: 2) {
                     Text(post.user.name)
@@ -51,9 +52,7 @@ extension Post.View {
     struct Content: SwiftUI.View {
         let post: Post
         
-        var index: Int = 1
-        
-        @State private var animating = false
+        @State private var visible = false
 
         var body: some SwiftUI.View {
             VStack(alignment: .leading) {
@@ -65,14 +64,47 @@ extension Post.View {
                     .resizable()
                     .aspectRatio(CGSize(width: post.content.image!.size.width, height: post.content.image!.size.height), contentMode: .fit)
                     .padding(.trailing, -16)
-                    .blur(radius: animating ? 0 : 10)
-                    .opacity(animating ? 1 : 0)
+                    .blur(radius: visible ? 0 : 10)
+                    .opacity(visible ? 1 : 0)
                     .onAppear {
-                        withAnimation(.basic(duration: 2.4)) {
-                            self.animating = true
+                        withAnimation(.basic(duration: 1.8)) {
+                            self.visible = true
                         }
                     }
             }
+        }
+    }
+}
+
+extension Post.View {
+    struct Footer: SwiftUI.View {
+        let post: Post
+        
+        @State private var didLike = false
+        
+        var body: some SwiftUI.View {
+            HStack {
+                ZStack {
+                    Image(systemName: "heart")
+                        .resizable()
+                        .frame(width: 27, height: 27)
+                        .foregroundColor(.red)
+                        .scaleEffect(didLike ? 0 : 1)
+                    
+                    Image(systemName: "heart.fill")
+                        .resizable()
+                        .frame(width: 27, height: 27)
+                        .foregroundColor(.red)
+                        .scaleEffect(didLike ? 1 : 0)
+                        .tapAction {
+                            withAnimation(.basic(duration: 0.22)) {
+                                self.didLike.toggle()
+                            }
+                        }
+                }
+            }
+            .padding(.leading, 16)
+            .padding(.trailing, -16)
         }
     }
 }
