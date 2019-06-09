@@ -18,6 +18,7 @@ extension Post {
                     .padding(.leading, 16)
                 Content(post: post)
                 Footer(post: post)
+                    .padding(.leading, 16)
             }.padding(.leading, -20)
         }
     }
@@ -60,6 +61,7 @@ extension Post.View {
                     .lineLimit(nil)
                     .padding(.leading, 16)
                     .padding(.trailing, -16)
+
                 Image(uiImage: post.content.image!)
                     .resizable()
                     .aspectRatio(CGSize(width: post.content.image!.size.width, height: post.content.image!.size.height), contentMode: .fit)
@@ -82,29 +84,44 @@ extension Post.View {
         
         @State private var didLike = false
         
+        @State private var showComment = false
+        
         var body: some SwiftUI.View {
-            HStack {
-                ZStack {
-                    Image(systemName: "heart")
-                        .resizable()
-                        .frame(width: 27, height: 27)
-                        .foregroundColor(.red)
-                        .scaleEffect(didLike ? 0 : 1)
-                    
-                    Image(systemName: "heart.fill")
-                        .resizable()
-                        .frame(width: 27, height: 27)
-                        .foregroundColor(.red)
-                        .scaleEffect(didLike ? 1 : 0)
-                        .tapAction {
-                            withAnimation(.basic(duration: 0.22)) {
-                                self.didLike.toggle()
-                            }
+            HStack(spacing: 18) {
+                Image(systemName: "heart")
+                    .resizable()
+                    .frame(width: 27, height: 27)
+                    .foregroundColor(.red)
+                    .scaleEffect(didLike ? 0 : 1)
+                    .overlay(
+                        Image(systemName: "heart.fill")
+                            .resizable()
+                            .frame(width: 27, height: 27)
+                            .foregroundColor(.red)
+                            .scaleEffect(didLike ? 1 : 0)
+                    )
+                    .tapAction {
+                        withAnimation(.basic(duration: 0.22)) {
+                            self.didLike.toggle()
                         }
-                }
+                    }
+ 
+                Image(systemName: "ellipses.bubble")
+                    .resizable()
+                    .frame(width: 27, height: 27)
+                    .scaleEffect(showComment ? 0 : 1)
+                    .overlay(
+                        Image(systemName: "ellipses.bubble.fill")
+                            .resizable()
+                            .frame(width: 27, height: 27)
+                            .scaleEffect(showComment ? 1 : 0)
+                    )
+                    .tapAction {
+                        withAnimation(.basic(duration: 0.22)) {
+                            self.showComment.toggle()
+                        }
+                    }
             }
-            .padding(.leading, 16)
-            .padding(.trailing, -16)
         }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA2C117E22AD2CA300744319 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C117D22AD2CA300744319 /* ViewExtension.swift */; };
 		BA68D73022A944A2005AB2F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68D72F22A944A2005AB2F6 /* AppDelegate.swift */; };
 		BA68D73222A944A2005AB2F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68D73122A944A2005AB2F6 /* SceneDelegate.swift */; };
 		BA68D73422A944A2005AB2F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68D73322A944A2005AB2F6 /* ContentView.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA2C117D22AD2CA300744319 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		BA68D72C22A944A1005AB2F6 /* SwiftUI_IG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_IG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA68D72F22A944A2005AB2F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA68D73122A944A2005AB2F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		BAA8EAD322AB714100F9C052 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				BA2C117D22AD2CA300744319 /* ViewExtension.swift */,
 				BAA8EAE822AB901300F9C052 /* ColorExtension.swift */,
 				BAA8EAD422AB715000F9C052 /* UIImageExtension.swift */,
 			);
@@ -220,6 +223,7 @@
 				BAA8EADD22AB7DD000F9C052 /* DebugView.swift in Sources */,
 				BAA8EAE322AB839C00F9C052 /* Content.swift in Sources */,
 				BAA8EAE922AB901300F9C052 /* ColorExtension.swift in Sources */,
+				BA2C117E22AD2CA300744319 /* ViewExtension.swift in Sources */,
 				BAA8EAD922AB7D2400F9C052 /* StoryView.swift in Sources */,
 				BAA8EAE122AB824800F9C052 /* User.swift in Sources */,
 				BAA8EADB22AB7D5A00F9C052 /* TimelineView.swift in Sources */,
