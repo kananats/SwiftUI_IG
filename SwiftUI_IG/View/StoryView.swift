@@ -14,6 +14,8 @@ extension Story {
         
         @State private var visible = false
         
+        @State private var dashPhase: Length = 0
+        
         var body: some SwiftUI.View {
             VStack {
                 Image(uiImage: story.content.image!.cropToSquare())
@@ -21,7 +23,7 @@ extension Story {
                     .clipShape(Circle())
                     .frame(width: 75, height: 75)
                     .clipped()
-                    .overlay(Circle().inset(by: -2.5).stroke(AngularGradient(gradient: Gradient(colors: Color.instagram), center: UnitPoint(x: 0.5, y: 0.5)), lineWidth: 5))
+                    .overlay(Circle().inset(by: -2.5).stroke(AngularGradient(gradient: Gradient(colors: Color.instagram), center: .center), style: StrokeStyle(lineWidth: 5, dash: [7.5, 2.5], dashPhase: dashPhase)))
                     .overlay(Circle().inset(by: -1.25).stroke(Color.white, lineWidth: 2.5))
                     .shadow(radius: 4)
                     .opacity(visible ? 1 : 0)
@@ -30,6 +32,12 @@ extension Story {
                             self.visible = true
                         }
                     }
+                    .tapAction {
+                        withAnimation(.basic(duration: 0.8, curve: .easeOut)) {
+                            self.dashPhase -= 45
+                        }
+                    }
+
                 Text(story.user.name)
                     .font(.caption)
             }
