@@ -87,40 +87,49 @@ extension Post.View {
         @State private var showComment = false
         
         var body: some SwiftUI.View {
-            HStack(spacing: 18) {
-                Image(systemName: "heart")
-                    .resizable()
-                    .frame(width: 27, height: 27)
-                    .foregroundColor(.red)
-                    .scaleEffect(didLike ? 0 : 1)
-                    .overlay(
-                        Image(systemName: "heart.fill")
-                            .resizable()
-                            .frame(width: 27, height: 27)
-                            .foregroundColor(.red)
-                            .scaleEffect(didLike ? 1 : 0)
-                    )
-                    .tapAction {
-                        withAnimation(.basic(duration: 0.22)) {
-                            self.didLike.toggle()
+            VStack(alignment: .leading) {
+                HStack(spacing: 18) {
+                    Image(systemName: "heart")
+                        .resizable()
+                        .frame(width: 27, height: 27)
+                        .foregroundColor(.red)
+                        .scaleEffect(didLike ? 0 : 1)
+                        .overlay(
+                            Image(systemName: "heart.fill")
+                                .resizable()
+                                .frame(width: 27, height: 27)
+                                .foregroundColor(.red)
+                                .scaleEffect(didLike ? 1 : 0)
+                        )
+                        .tapAction {
+                            withAnimation(.basic(duration: 0.22)) {
+                                self.didLike.toggle()
+                            }
                         }
-                    }
- 
-                Image(systemName: "ellipses.bubble")
-                    .resizable()
-                    .frame(width: 27, height: 27)
-                    .scaleEffect(showComment ? 0 : 1)
-                    .overlay(
-                        Image(systemName: "ellipses.bubble.fill")
-                            .resizable()
-                            .frame(width: 27, height: 27)
-                            .scaleEffect(showComment ? 1 : 0)
-                    )
-                    .tapAction {
-                        withAnimation(.basic(duration: 0.22)) {
-                            self.showComment.toggle()
+                    
+                    Image(systemName: "ellipses.bubble")
+                        .resizable()
+                        .frame(width: 27, height: 27)
+                        .scaleEffect(showComment ? 0 : 1)
+                        .overlay(
+                            Image(systemName: "ellipses.bubble.fill")
+                                .resizable()
+                                .frame(width: 27, height: 27)
+                                .scaleEffect(showComment ? 1 : 0)
+                        )
+                        .tapAction {
+                            withAnimation(.basic(duration: 0.22)) {
+                                self.showComment.toggle()
+                            }
                         }
+                }
+                if showComment {
+                    VStack {
+                        Text("Comment 1")
+                        Text("Comment 2")
+                        Text("Comment 3")
                     }
+                }
             }
         }
     }
